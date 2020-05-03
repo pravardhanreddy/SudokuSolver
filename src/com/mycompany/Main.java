@@ -37,6 +37,7 @@ public class Main {
 
         Stack<Dim> stack = new Stack<>();
         Dim pos;
+        int iter = 0;
         int i = 0;
         int j = 0;
         while (true) {
@@ -46,6 +47,7 @@ public class Main {
             if (i == -1) break;
             while (true) {
                 board[i][j] += 1;
+                iter++;
                 if (board[i][j] == 10){
                     board[i][j] = 0;
                     pos = stack.pop();
@@ -60,6 +62,7 @@ public class Main {
 
         printBoard();
         System.out.println("This is the solved board");
+        System.out.println("Solved in " + iter + " iterations");
     }
 
 
