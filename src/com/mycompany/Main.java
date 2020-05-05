@@ -16,17 +16,17 @@ class Dim {
 public class Main {
 
     private static int[][] board =
-           {{0,6,4, 5,0,0, 0,8,0},
-            {0,0,8, 0,0,0, 0,9,0},
-            {0,7,0, 0,0,8, 3,4,0},
+                   {{0,4,0, 3,0,0, 0,0,9},
+                    {0,0,3, 0,2,1, 0,0,8},
+                    {0,0,0, 0,0,8, 0,3,6},
 
-            {0,0,2, 0,0,3, 5,0,0},
-            {7,0,0, 0,0,0, 0,0,3},
-            {0,0,6, 2,0,0, 4,0,0},
+                    {2,0,6, 0,0,0, 0,5,0},
+                    {0,0,0, 0,6,0, 0,0,0},
+                    {0,3,0, 0,0,0, 2,0,4},
 
-            {0,9,5, 1,0,0, 0,7,0},
-            {0,2,0, 0,0,0, 8,3,0},
-            {0,4,0, 0,0,2, 1,5,0}};
+                    {7,9,0, 2,0,0, 0,0,0},
+                    {3,0,0, 1,7,0, 8,0,0},
+                    {5,0,0, 0,0,4, 0,9,0}};
 
     public static void main(String[] args) {
 
@@ -37,9 +37,9 @@ public class Main {
 
         Stack<Dim> stack = new Stack<>();
         Dim pos;
-        int iter = 0;
         int i = 0;
         int j = 0;
+        long start = System.nanoTime();
         while (true) {
             pos = getNextEmpty(i, j);
             i = pos.i;
@@ -47,7 +47,6 @@ public class Main {
             if (i == -1) break;
             while (true) {
                 board[i][j] += 1;
-                iter++;
                 if (board[i][j] == 10){
                     board[i][j] = 0;
                     pos = stack.pop();
@@ -59,10 +58,10 @@ public class Main {
                 }
             }
         }
-
+        long end = System.nanoTime();
         printBoard();
         System.out.println("This is the solved board");
-        System.out.println("Solved in " + iter + " iterations");
+        System.out.println("Solved in " + (end - start)/1000000 + " milliseconds");
     }
 
 
